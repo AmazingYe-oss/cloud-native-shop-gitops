@@ -1,0 +1,13 @@
+# Helm 临时文件
+charts/*/tmp/
+*.tgz
+Chart.lock
+
+# 敏感配置
+*.secret.yaml
+secrets/
+.env
+
+# 编辑器
+.idea/
+.vscode/

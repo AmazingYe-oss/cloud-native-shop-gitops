@@ -1,21 +1,21 @@
 # 默认值（被 environments/<env>/values.yaml 覆盖）
 registry: crpi-he7mqvhihpnvi08o.cn-shanghai.personal.cr.aliyuncs.com
-namespace: cloud-native-shop
+namespace: cloud-native-shop1
 
 services:
   frontend:
-    image: cloud-native-shop/frontend
+    image: cloud-native-shop1/frontend
     tag: latest
     port: 80
   user-service:
-    image: cloud-native-shop/user-service
+    image: cloud-native-shop1/user-service
     tag: latest
     port: 8000
   product-service:
-    image: cloud-native-shop/product-service
+    image: cloud-native-shop1/product-service
     tag: latest
     port: 8000
   order-service:
-    image: cloud-native-shop/order-service
+    image: cloud-native-shop1/order-service
     tag: latest
     port: 8000

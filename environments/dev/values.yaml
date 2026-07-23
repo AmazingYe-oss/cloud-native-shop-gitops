@@ -1,0 +1,13 @@
+# Dev 环境覆盖值
+# CI 会自动更新各服务的 tag（commit SHA）
+environment: dev
+
+services:
+  frontend:
+    tag: latest
+  user-service:
+    tag: latest
+  product-service:
+    tag: latest
+  order-service:
+    tag: latest

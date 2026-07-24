@@ -3,10 +3,10 @@
 environment: dev
 services:
   frontend:
-    tag: ba9c2a4
+    tag: 1bdd860
   user-service:
-    tag: ba9c2a4
+    tag: 1bdd860
   product-service:
-    tag: ba9c2a4
+    tag: 1bdd860
   order-service:
-    tag: ba9c2a4
+    tag: 1bdd860

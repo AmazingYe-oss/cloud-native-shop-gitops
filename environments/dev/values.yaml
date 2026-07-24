@@ -3,10 +3,10 @@
 environment: dev
 services:
   frontend:
-    tag: test-gitops-v1
+    tag: ba9c2a4
   user-service:
-    tag: test-gitops-v1
+    tag: ba9c2a4
   product-service:
-    tag: test-gitops-v1
+    tag: ba9c2a4
   order-service:
-    tag: test-gitops-v1
+    tag: ba9c2a4

@@ -1,6 +1,5 @@
 # 默认值（被 environments/<env>/values.yaml 覆盖）
 registry: crpi-he7mqvhihpnvi08o.cn-shanghai.personal.cr.aliyuncs.com
-namespace: cloud-native-shop1
 
 services:
   frontend:

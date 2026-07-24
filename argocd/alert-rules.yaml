@@ -1,0 +1,40 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: cloud-native-shop-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+    - name: cloud-native-shop
+      rules:
+        # 规则 1：Pod 频繁重启（可能 CrashLoopBackOff）
+        - alert: PodRestartingTooOften
+          expr: increase(kube_pod_container_status_restarts_total{namespace="cloud-native-shop"}[10m]) > 3
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Pod {{ $labels.pod }} 频繁重启"
+            description: "{{ $labels.pod }} 在 10 分钟内重启了 {{ $value }} 次"
+
+        # 规则 2：Pod 不健康（Not Ready）
+        - alert: PodNotReady
+          expr: kube_pod_status_ready{namespace="cloud-native-shop", condition="true"} == 0
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Pod {{ $labels.pod }} 不健康"
+            description: "{{ $labels.pod }} 已经 Not Ready 超过 2 分钟"
+
+        # 规则 3：容器 OOM 被杀
+        - alert: ContainerOOMKilled
+          expr: kube_pod_container_status_last_terminated_reason{namespace="cloud-native-shop", reason="OOMKilled"} == 1
+          for: 0m
+          labels:
+            severity: critical
+          annotations:
+            summary: "容器 {{ $labels.container }} OOM 被杀"
+            description: "{{ $labels.pod }} 中的 {{ $labels.container }} 因内存不足被杀"

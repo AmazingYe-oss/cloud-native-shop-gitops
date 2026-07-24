@@ -7,15 +7,37 @@ services:
     image: cloud-native-shop1/frontend
     tag: latest
     port: 80
+    healthPath: /
+    serviceType: NodePort
+    nodePort: 30000
+    replicas: 1
   user-service:
     image: cloud-native-shop1/user-service
     tag: latest
     port: 8000
+    healthPath: /health
+    serviceType: ClusterIP
+    replicas: 1
+    env:
+      USER_SERVICE_URL: "http://user-service:8000"
+      PRODUCT_SERVICE_URL: "http://product-service:8000"
   product-service:
     image: cloud-native-shop1/product-service
     tag: latest
     port: 8000
+    healthPath: /health
+    serviceType: ClusterIP
+    replicas: 1
+    env:
+      USER_SERVICE_URL: "http://user-service:8000"
+      PRODUCT_SERVICE_URL: "http://product-service:8000"
   order-service:
     image: cloud-native-shop1/order-service
     tag: latest
     port: 8000
+    healthPath: /health
+    serviceType: ClusterIP
+    replicas: 1
+    env:
+      USER_SERVICE_URL: "http://user-service:8000"
+      PRODUCT_SERVICE_URL: "http://product-service:8000"
